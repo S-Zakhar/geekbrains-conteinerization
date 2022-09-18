@@ -19,7 +19,7 @@ metadata:
   name: redmine-config
   namespace: l5
   labels:
-    app: postgres
+    app: redmine
 data:
   REDMINE_DB_POSTGRES: database
   REDMINE_DB_USERNAME: testuser
