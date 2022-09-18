@@ -5,7 +5,7 @@ metadata:
   name: my-postgres
   namespace: l5
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: my-postgres
