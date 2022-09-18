@@ -48,7 +48,7 @@ spec:
 
         - name: REDMINE_SECRET_KEY_BASE
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: secrets
               key: REDMINE_SECRET_KEY_BASE
 #        volumeMounts:
