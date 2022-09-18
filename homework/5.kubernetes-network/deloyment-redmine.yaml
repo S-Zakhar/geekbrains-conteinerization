@@ -2,47 +2,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-postgres
+  name: redmine
   namespace: l5
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-postgres
+      app: redmine
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: my-postgres
+        app: redmine
     spec:
       containers:
-      - image: postgres:10.13
-        name: postgres
+      - image: redmine:4.1.1
+        name: redmine
         ports:
-        - containerPort: 5432
-          protocol: TCP
+        - containerPort: 3000
         env:
-        - name: POSTGRES_USER
+        - name: REDMINE_DB_POSTGRES
           valueFrom:
             configMapKeyRef:
-              name: postgres-config
-              key:  POSTGRES_USER
-        - name: POSTGRES_PASSWORD
+              name: redmine-config
+              key:  REDMINE_DB_POSTGRES
+
+        - name: REDMINE_DB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: redmine-config
+              key:  REDMINE_DB_USERNAME
+
+        - name: REDMINE_DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-secret
-              key: POSTGRES_PASSWORD
-        - name: POSTGRES_DB
+              name: secrets
+              key:  POSTGRES_PASSWORD
+
+        - name: REDMINE_DB_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: postgres-config
-              key: POSTGRES_DB
-        - name: PGDATA
+              name: redmine-config
+              key:  REDMINE_DB_DATABASE
+
+        - name: REDMINE_SECRET_KEY_BASE
           valueFrom:
             configMapKeyRef:
-              name: postgres-config
-              key: PGDATA
+              name: secrets
+              key: REDMINE_SECRET_KEY_BASE
         volumeMounts:
         - name: postgres-pvc
           mountPath: /var/lib/postgresql/data/

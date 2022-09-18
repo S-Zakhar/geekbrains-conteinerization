@@ -1,11 +1,14 @@
 ---
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
-  name: pvc5
+  name: postgres-pvc
+  namespace: l5
 spec:
   accessModes:
   - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
+  storageClassName: csi-ceph-hdd-ms1
+...

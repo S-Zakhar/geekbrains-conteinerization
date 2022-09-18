@@ -5,7 +5,7 @@ metadata:
   name: my-postgres
   namespace: l5
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: my-postgres
@@ -31,7 +31,7 @@ spec:
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-secret
+              name: secrets
               key: POSTGRES_PASSWORD
         - name: POSTGRES_DB
           valueFrom:
