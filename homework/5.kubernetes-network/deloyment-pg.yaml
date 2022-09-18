@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-postgres
+  name: postgres
   namespace: l5
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-postgres
+      app: postgres
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: my-postgres
+        app: postgres
     spec:
       containers:
       - image: postgres:10.13
