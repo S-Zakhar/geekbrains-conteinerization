@@ -31,13 +31,13 @@ spec:
         volumeMounts:
         - mountPath: /host/proc
           name: proc
-        - mountPath: /host/sys
-          name: sys
-        - mountPath: /host/root
-          name: root
-          readOnly: true
+#        - mountPath: /host/sys
+#          name: sys
+#        - mountPath: /host/root
+#          name: root
+#          readOnly: true
       hostNetwork: true
-      hostPID: true
+#      hostPID: true
       tolerations:
         - effect: NoSchedule
           operator: Exists
@@ -48,12 +48,12 @@ spec:
           path: /proc
           type: ""
         name: proc
-      - hostPath:
-          path: /sys
-          type: ""
-        name: sys
-      - hostPath:
-          path: /
-          type: ""
-        name: root
+#      - hostPath:
+#          path: /sys
+#          type: ""
+#        name: sys
+#      - hostPath:
+#          path: /
+#          type: ""
+#        name: root
 ...
